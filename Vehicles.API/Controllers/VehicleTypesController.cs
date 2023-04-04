@@ -124,27 +124,23 @@ namespace Vehicles.API.Controllers
                 return NotFound();
             }
 
-            var vehicleType = await _context.VehicleTypes
+            VehicleType vehicleType = await _context.VehicleTypes
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (vehicleType == null)
             {
                 return NotFound();
             }
+            {
+                
+                _context.VehicleTypes.Remove(vehicleType);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
 
             return View(vehicleType);
         }
 
-        // POST: VehicleTypes/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var vehicleType = await _context.VehicleTypes.FindAsync(id);
-            _context.VehicleTypes.Remove(vehicleType);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
+     
         private bool VehicleTypeExists(int id)
         {
             return _context.VehicleTypes.Any(e => e.Id == id);
