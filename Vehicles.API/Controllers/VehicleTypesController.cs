@@ -131,16 +131,14 @@ namespace Vehicles.API.Controllers
                 return NotFound();
             }
             {
-                
+
                 _context.VehicleTypes.Remove(vehicleType);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
+
             }
 
-            return View(vehicleType);
         }
-
-     
         private bool VehicleTypeExists(int id)
         {
             return _context.VehicleTypes.Any(e => e.Id == id);
