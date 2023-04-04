@@ -12,7 +12,7 @@ namespace Vehicles.API.Data.Entities
 
         [MaxLength(50,ErrorMessage ="El cmapo {0} debe tener {1} caracteres")]
         [Display(Name ="Tipo de Vehiculo")]
-        [Required(ErrorMessage ="El campo {0} debe es obligatorio")]
+        [Required(ErrorMessage ="El campo {0} es obligatorio")]
         public string Description { get; set; }
     }
 }
