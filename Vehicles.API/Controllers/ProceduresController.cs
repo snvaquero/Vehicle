@@ -117,10 +117,7 @@ namespace Vehicles.API.Controllers
             return View(procedure);
         }
 
-        private bool VehicleTypeExists(int id)
-        {
-            return _context.VehicleTypes.Any(e => e.Id == id);
-        }
+       
 
         // GET: VehicleTypes/Delete/5
         public async Task<IActionResult> Delete(int? id)

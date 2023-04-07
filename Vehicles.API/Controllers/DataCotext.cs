@@ -2,5 +2,6 @@
 {
     public class DataCotext
     {
+        public object brands { get; internal set; }
     }
 }
