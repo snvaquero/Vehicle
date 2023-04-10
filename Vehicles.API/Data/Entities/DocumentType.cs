@@ -14,5 +14,7 @@ namespace Vehicles.API.Data.Entities
         [Display(Name = "Tipo de Documento")]
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         public string Description { get; set; }
+
+        public ICollection<User> Users  { get; set; }
     }
 }

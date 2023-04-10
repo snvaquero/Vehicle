@@ -3,16 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Vehicles.API.Data.Entities;
+using Vehicles.API.Helpers;
+using Vehicles.Common.Enums;
 
 namespace Vehicles.API.Data
 {
     public class SeedDb
     {
         private readonly DataContext _context;
+        private readonly IUserHelper _userHelper;
 
-        public SeedDb(DataContext context)
+        public SeedDb(DataContext context,IUserHelper userHelper)
         {
             _context = context;
+            _userHelper = userHelper;
         }
 
         public async Task SeedAsync ()
@@ -22,7 +26,39 @@ namespace Vehicles.API.Data
             await CheckBrandsAsync();
             await CheckProceduresAsync();
             await CheckDocumentsTypes();
+            await CheckRolesAsync();
+            await CheckUserAsync("1010","Norma","Vaquero","normavaquero@yopmail.com","77978899","La Luna",UserType.Admin);
+            await CheckUserAsync("2010", "Sergio", "Vaquero", "sergiovaquero@yopmail.com", "77978898", "La Luna", UserType.User);
+            await CheckUserAsync("3010", "Erickson", "Vaquero", "ericksonvaquero@yopmail.com", "77978897", "La Luna", UserType.User);
+        }
 
+        private async Task CheckUserAsync(string document, string firstName, string lastName, string email, string phoneNumber, string address, UserType userType)
+        {
+            User user = await _userHelper.GetUserAsync(email);
+            if (user == null)
+            {
+                user = new User
+                {
+                    Address = address,
+                    Document = document,
+                    DocumentType = _context.DocumentTypes.FirstOrDefault(x => x.Description == "Cédula"),
+                    Email = email,
+                    FirstName=firstName,
+                    LastName=lastName,
+                    PhoneNumber=phoneNumber,
+                    UserName=email,
+                    UserType=userType,
+
+                };
+                await _userHelper.AddUserAsync(user, "123456");
+                await _userHelper.AddUserToRoleAsync(user, userType.ToString());
+            }
+        }
+
+        private async Task CheckRolesAsync()
+        {
+            await _userHelper.CheckRoleAsync(UserType.Admin.ToString());
+            await _userHelper.CheckRoleAsync(UserType.User.ToString());
         }
 
         private async Task CheckDocumentsTypes()
@@ -109,3 +145,4 @@ namespace Vehicles.API.Data
         }
     }
 }
+ 
