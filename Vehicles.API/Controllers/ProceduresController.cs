@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 using Vehicles.API.Data;
 using Microsoft.EntityFrameworkCore;
 using Vehicles.API.Data.Entities;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Vehicles.API.Controllers
 {
+    [Authorize(Roles ="Admin")]
     public class ProceduresController : Controller
     {
         private readonly DataContext _context;
