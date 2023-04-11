@@ -52,7 +52,7 @@ namespace Vehicles.API.Data
         public string FullName => $"{FirstName} {LastName}";
 
         public ICollection<Vehicle>Vehicles { get; set; }
-        public ICollection<History> Histories { get; set; }
+        
 
     }
 }
