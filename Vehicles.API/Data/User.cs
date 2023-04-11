@@ -39,11 +39,11 @@ namespace Vehicles.API.Data
         public Guid ImageId { get; set; }
 
 
-        //TODO: Fix the images path
+       
         [Display(Name = "Foto")]
         public string ImageFullPath => ImageId == Guid.Empty
                 ? $"https://localhost:44336/images/noimage.png"
-            : $"https://vehiclessalazar.blob.core.windows.net/users/{ImageId}";
+            : $"https://vehiclesvaqueros.blob.core.windows.net/users/{ImageId}";
 
         [Display(Name ="Tipo de Usuario")]
         public UserType UserType { get; set; }

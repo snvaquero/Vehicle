@@ -8,12 +8,12 @@ namespace Vehicles.API.Helpers
 {
     public interface ICombosHelper
     {
-        IEnumerable<SelectListItem> GetCombosDocumentTypes();
-        IEnumerable<SelectListItem> GetCombosProcedures();
+        IEnumerable<SelectListItem> GetComboDocumentTypes();
+        IEnumerable<SelectListItem> GetComboProcedures();
 
-        IEnumerable<SelectListItem> GetCombosVehiculeType();
+        IEnumerable<SelectListItem> GetComboVehiculeType();
 
-        IEnumerable<SelectListItem> GetCombosBrands();
+        IEnumerable<SelectListItem> GetComboBrands();
 
     }
 }

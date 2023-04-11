@@ -52,7 +52,7 @@ namespace Vehicles.API.Data.Entities
         [DataType(DataType.MultilineText)]
         public string Remarks { get; set; }
 
-        //TODO: Fix the correct patch 
+       
         [Display(Name = "Foto")]
         public string ImageFullPath => VehiclePhotos == null || VehiclePhotos.Count == 0
            ? $"https://localhost:44345/images/noimage.png"

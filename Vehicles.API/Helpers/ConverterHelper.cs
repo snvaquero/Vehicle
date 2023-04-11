@@ -52,4 +52,5 @@ namespace Vehicles.API.Helpers
                 UserType = user.UserType,
             };
         }
+    }
 }
