@@ -52,7 +52,10 @@ namespace Vehicles.API.Data
         public string FullName => $"{FirstName} {LastName}";
 
         public ICollection<Vehicle>Vehicles { get; set; }
-        
+
+        [Display(Name = "# Vehiculos")]
+        public int VehiclesCount => Vehicles == null ? 0 : Vehicles.Count;
+
 
     }
 }
