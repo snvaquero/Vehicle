@@ -13,5 +13,6 @@ namespace Vehicles.API.Data.Entities
         [Display(Name ="Marca")]
         [MaxLength(50,ErrorMessage ="El campo {0} debe tener {1} caracteres")]
         public string Description { get; set; }
+        public ICollection<Vehicle> Vehicles { get; set; }
     }
 }
